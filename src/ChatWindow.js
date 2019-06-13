@@ -12,8 +12,8 @@ class ChatWindow extends React.Component {
     return false;
   };
 
-  handleMessageSend = (user, message) => {
-    this.props.onMessageSend(user, message);
+  handleMessageSend = (message) => {
+    this.props.onMessageSend(this.props.user, message);
   }
 
   render() {
@@ -25,7 +25,7 @@ class ChatWindow extends React.Component {
         <div className="name sender">{user.username}</div>
 
         <MessageList messages={messages} user={user} />
-        <SendMessage onMessageSend={this.handleMessageSend} user={user} />
+        <SendMessage onMessageSend={this.handleMessageSend} />
       </div>
 
     );

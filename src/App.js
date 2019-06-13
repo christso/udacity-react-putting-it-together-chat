@@ -24,7 +24,6 @@ class App extends Component {
   }  
   
   handleMessageSend = (user, message) => {
-    console.log('handling message send', user, message);
     this.setState(currState => ({
       ...currState,
       messages: [
@@ -42,8 +41,15 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          <ChatWindow user={users[0]} messages={this.state.messages} onMessageSend={this.handleMessageSend} />
-          <ChatWindow user={users[1]} messages={this.state.messages} onMessageSend={this.handleMessageSend} />
+          {users.map(user => {
+            return (
+            <ChatWindow 
+              key={user.username}
+              user={user} 
+              messages={this.state.messages} 
+              onMessageSend={this.handleMessageSend} />
+            );
+          })}
         </div>
       </div>
     );

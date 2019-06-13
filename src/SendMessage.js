@@ -11,12 +11,12 @@ class SendMessage extends React.Component {
     return false;
   };
 
-  handleMessageSend = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.onMessageSend(this.props.user, this.state.message);
+    this.props.onMessageSend(this.state.message);
   }
 
-  handleMessageInputChange = e => {
+  handleInputChange = e => {
     const value = e.target.value;
     this.setState(() => ({message: value}));
   }
@@ -24,12 +24,12 @@ class SendMessage extends React.Component {
   render() {
     return (
       <div>
-        <form className="input-group" onSubmit={this.handleMessageSend}>
+        <form className="input-group" onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Enter your message..." 
             value={this.state.message}
-            onChange={this.handleMessageInputChange} />
+            onChange={this.handleInputChange} />
           <div className="input-group-append">
-            <button className="btn submit-button" onClick={this.handleMessageSend} disabled={this.isDisabled()}>
+            <button className="btn submit-button" onClick={this.handleSubmit} disabled={this.isDisabled()}>
               SEND
             </button>
           </div>
@@ -40,7 +40,6 @@ class SendMessage extends React.Component {
 }
 
 SendMessage.propTypes = {
-  user: PropTypes.object.isRequired,
   onMessageSend: PropTypes.func.isRequired
 };
 

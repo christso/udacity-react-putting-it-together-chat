@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import MessageList from './MessageList';
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -29,18 +30,7 @@ class ChatWindow extends React.Component {
         <h2>Super Awesome Chat</h2>
         <div className="name sender">{user.username}</div>
 
-        <ul className="message-list">
-          {messages.map((message, index) => (
-            <li
-              key={index}
-              className={
-                message.username === user.username ? 'message sender' : 'message recipient'
-              }
-            >
-              <p>{`${message.username}: ${message.text}`}</p>
-            </li>
-          ))}
-        </ul>
+        <MessageList messages={messages} user={user} />
 
         <div>
           <form className="input-group">
